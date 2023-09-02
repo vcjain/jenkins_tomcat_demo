@@ -23,7 +23,7 @@ pipeline {
             steps{
                 echo 'Deploying on Tomcat '
                 sshagent(['tomcat-key']) {
-                    sh 'scp -v -o StrictHostKeyChecking=no target/demowar-0.0.1-SNAPSHOT.war ubuntu@100.26.157.249:/opt/tomcat/webapps'
+                    sh 'scp -v -o StrictHostKeyChecking=no target/demowar-0.0.1-SNAPSHOT.war ubuntu@3.83.18.21:/opt/tomcat/webapps'
                 }
             }
         }
