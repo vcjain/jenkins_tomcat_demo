@@ -3,6 +3,9 @@ pipeline {
     tools {
         maven 'maven3'
     }
+    parameters {
+        string defaultValue: '100.26.235.195', name: 'tomcat-server'
+    }
     stages{
         
         stage('checkout'){
