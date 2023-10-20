@@ -19,13 +19,13 @@ To exit from the nano editor press Cntrl+X and then press Y
 - sudo nano /opt/tomcat/conf/tomcat-users.xml
 
 Paste in tomact.users.xml file
-
+------------------------------------------------------------------------------------------------------------------------
 <role rolename="manager-gui, manager-script" />
 <user username="manager" password="manager_password" roles="manager-gui, manager-script" />
 
 <role rolename="admin-gui" />
 <user username="admin" password="admin_password" roles="manager-gui,admin-gui" />
-
+------------------------------------------------------------------------------------------------------------------------
 
 
 To remove the restriction for the Manager page, open its config file for editing and COMMENT out the Valve definition like below
@@ -104,7 +104,15 @@ Press q to exit the command.
 You can access Tomcat server on browser using URL http://your_server_ip:8080
 
 
+------------------------------------------------------------------------------------------------------------------------
+
 
 ## Steps to Configure Jenkins
 
-- Add SSH Agent and SSH Pipeline Steps plugin
+### Deploying using SCP command
+- Add SSH Agent plugin
+- Add  Tomcat server private key (.pem file) as Jenkins credential
+
+  Deploying using Container Plugin
+- Add Deploy to Container Plugin
+  
