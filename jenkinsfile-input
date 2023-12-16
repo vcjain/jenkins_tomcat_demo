@@ -44,6 +44,12 @@ pipeline {
         }
         stage('Deploy'){
            steps{
+               echo 'Tomcat Ip address $TOMCAT_IP'
+                sshagent(['tomcat-key']) {
+                    sh '''
+                        scp -v -o StrictHostKeyChecking=no target/demowar-0.0.1-SNAPSHOT.war ubuntu@$TOMCAT_IP:/opt/tomcat/webapps
+                    '''
+                }
                 echo 'Deploying on Tomcat '
             }
         }
