@@ -37,8 +37,8 @@ pipeline {
                     )
 
                     // Access the parameters
-                    echo "User provided input for PARAM1: ${userInput.TESTCASE}"
-                    echo "User provided input for PARAM2: ${userInput.RATING}"
+                    echo "User provided input for Testcase Execution: ${userInput.TESTCASE}"
+                    echo "User provided input for Ratings: ${userInput.RATING}"
                     env.TESTCASE = userInput.TESTCASE
                     env.RATING = userInput.RATING
                 }
