@@ -20,11 +20,13 @@ To exit from the nano editor press Cntrl+X and then press Y
 
 Paste in tomact.users.xml file
 ------------------------------------------------------------------------------------------------------------------------
+```
 <role rolename="manager-gui, manager-script" />
 <user username="manager" password="manager_password" roles="manager-gui, manager-script" />
 
 <role rolename="admin-gui" />
 <user username="admin" password="admin_password" roles="manager-gui,admin-gui" />
+```
 ------------------------------------------------------------------------------------------------------------------------
 
 
@@ -32,6 +34,7 @@ To remove the restriction for the Manager page, open its config file for editing
 - sudo nano /opt/tomcat/webapps/manager/META-INF/context.xml
 ------------------------------------------------------------------------------------------------------------------------
 ...
+```
 <Context antiResourceLocking="false" privileged="true" >
   <CookieProcessor className="org.apache.tomcat.util.http.Rfc6265CookieProcessor"
                    sameSiteCookies="strict" />
@@ -39,13 +42,14 @@ To remove the restriction for the Manager page, open its config file for editing
          allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" /> -->
   <Manager sessionAttributeValueClassNameFilter="java\.lang\.(?:Boolean|Integer|Long|Number|String)|org\.apache\.catalina\.filters\.Csr>
 </Context>
-
+```
 ------------------------------------------------------------------------------------------------------------------------
 
 Do the same thing for host manager as well
 - sudo nano /opt/tomcat/webapps/host-manager/META-INF/context.xml
 ------------------------------------------------------------------------------------------------------------------------
 ...
+```
 <Context antiResourceLocking="false" privileged="true" >
   <CookieProcessor className="org.apache.tomcat.util.http.Rfc6265CookieProcessor"
                    sameSiteCookies="strict" />
@@ -53,7 +57,7 @@ Do the same thing for host manager as well
          allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" /> -->
   <Manager sessionAttributeValueClassNameFilter="java\.lang\.(?:Boolean|Integer|Long|Number|String)|org\.apache\.catalina\.filters\.Csr>
 </Context>
-
+```
 ------------------------------------------------------------------------------------------------------------------------
 
 Create the tomcat service file
@@ -64,6 +68,7 @@ Paste the below contents. Make sure the variable JAVA_HOME is set correctly.
 NOTE: If you have a different Java version then you can check the Java path by running the below command path of Java is correct
 - sudo update-java-alternatives -l
 ------------------------------------------------------------------------------------------------------------------------
+```
 [Unit]
 Description=Tomcat
 After=network.target
@@ -89,10 +94,11 @@ Restart=always
 
 [Install]
 WantedBy=multi-user.target
-
+```
 ------------------------------------------------------------------------------------------------------------------------
 
 Execute the below steps to start the Tomcat server
+```
 - sudo systemctl daemon-reload
 - sudo systemctl start tomcat
 - sudo systemctl status tomcat
@@ -100,7 +106,7 @@ Execute the below steps to start the Tomcat server
 Press q to exit the command.
 
 - sudo ufw allow 8080
-
+```
 You can access Tomcat server on browser using URL http://your_server_ip:8080
 
 
