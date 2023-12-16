@@ -127,5 +127,5 @@ You can access Tomcat server on browser using URL http://your_server_ip:8080
 - Define a parameter as name TOMCAT_IP, as this is used in Jenkinsfile
 
 ### Deploying using Container Plugin
-- Add Deploy to Container Plugin
+- Add "Deploy to Container" Plugin
   
