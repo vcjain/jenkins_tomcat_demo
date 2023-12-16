@@ -4,7 +4,7 @@ pipeline {
         maven 'maven3'
     }
     parameters {
-        string defaultValue: '100.26.235.195', name: 'tomcat-server'
+        string defaultValue: '100.26.235.195', name: 'TOMCAT_IP'
     }
     stages{
         
