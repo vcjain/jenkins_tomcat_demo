@@ -1,8 +1,6 @@
 pipeline {
     
-   agent {
-        label 'ssh'
-    }
+   agent any
 
     tools {
       maven 'maven3'
