@@ -20,7 +20,7 @@ pipeline {
         stage('Deploy on Tomcat'){
             steps{
                 echo 'Deploying on Tomcat '
-                deploy adapters: [tomcat9(credentialsId: 'tomcat', path: '', url: 'http://$TOMCAT_ID:8080/')], contextPath: '/test', onFailure: false, war: 'target/demowar-0.0.1-SNAPSHOT.war'
+                deploy adapters: [tomcat9(credentialsId: 'tomcat-manager', path: '', url: 'http://$TOMCAT_ID:8080/')], contextPath: '/test', onFailure: false, war: 'target/demowar-0.0.1-SNAPSHOT.war'
             }
         }
         
