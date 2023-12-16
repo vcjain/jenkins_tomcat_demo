@@ -19,7 +19,7 @@ pipeline {
         stage ('Build') {
             steps {
                 echo "Build Stage is in progress"
-                sh 'mvn compile'
+                sh 'mvn compile install'
             }
             
         }
