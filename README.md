@@ -123,6 +123,8 @@ You can access Tomcat server on browser using URL http://your_server_ip:8080
 ### Deploying using SCP command
 - Add SSH Agent plugin
 - Add  Tomcat server private key (.pem file) as Jenkins credential
+- Create a Jenkins pipeline Job
+- Define a parameter as name TOMCAT_IP, as this is used in Jenkinsfile
 
 ### Deploying using Container Plugin
 - Add Deploy to Container Plugin
