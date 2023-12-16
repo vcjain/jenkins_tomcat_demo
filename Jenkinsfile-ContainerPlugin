@@ -3,9 +3,7 @@ pipeline {
     tools {
         maven 'maven3'
     }
-    parameters {
-        string defaultValue: '100.26.235.195', name: 'tomcat-server'
-    }
+    
     stages{
         
         stage('checkout'){
@@ -22,7 +20,7 @@ pipeline {
         stage('Deploy on Tomcat'){
             steps{
                 echo 'Deploying on Tomcat '
-                deploy adapters: [tomcat9(credentialsId: 'tomcat', path: '', url: 'http://54.197.160.196:8080/')], contextPath: '/test', onFailure: false, war: 'target/demowar-0.0.1-SNAPSHOT.war'
+                deploy adapters: [tomcat9(credentialsId: 'tomcat', path: '', url: 'http://$TOMCAT_ID:8080/')], contextPath: '/test', onFailure: false, war: 'target/demowar-0.0.1-SNAPSHOT.war'
             }
         }
         
