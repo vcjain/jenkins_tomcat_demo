@@ -17,7 +17,7 @@ https://www.digitalocean.com/community/tutorials/how-to-install-apache-tomcat-10
 Open tomcat-users.xml file and add roles & users for managing tomcat. Execute below command and details in below table. 
 To exit from the nano editor press Cntrl+X and then press Y
 ```
-- sudo nano /opt/tomcat/conf/tomcat-users.xml
+sudo nano /opt/tomcat/conf/tomcat-users.xml
 ```
 Paste in tomact.users.xml file
 ------------------------------------------------------------------------------------------------------------------------
@@ -32,7 +32,9 @@ Paste in tomact.users.xml file
 
 
 To remove the restriction for the Manager page, open its config file for editing and COMMENT out the Valve definition like below
-- sudo nano /opt/tomcat/webapps/manager/META-INF/context.xml
+```
+sudo nano /opt/tomcat/webapps/manager/META-INF/context.xml
+```
 ------------------------------------------------------------------------------------------------------------------------
 ...
 ```
@@ -48,7 +50,7 @@ To remove the restriction for the Manager page, open its config file for editing
 
 Do the same thing for host manager as well
 ```
-- sudo nano /opt/tomcat/webapps/host-manager/META-INF/context.xml
+sudo nano /opt/tomcat/webapps/host-manager/META-INF/context.xml
 ```
 ------------------------------------------------------------------------------------------------------------------------
 ...
@@ -65,7 +67,7 @@ Do the same thing for host manager as well
 
 Create the tomcat service file
 ```
-- sudo nano /etc/systemd/system/tomcat.service
+sudo nano /etc/systemd/system/tomcat.service
 ```
 
 Paste the below contents. Make sure the variable JAVA_HOME is set correctly. 
@@ -122,7 +124,7 @@ You can access Tomcat server on browser using URL http://your_server_ip:8080
 
 ### Deploying using SCP command
 - Add SSH Agent plugin
-- Add  Tomcat server private key (.pem file) as Jenkins credential
+- Add  Tomcat server private key (.pem file) as Jenkins credential, (tomcat-key)
 - Create a Jenkins pipeline Job
 - Define a parameter as name TOMCAT_IP, as this is used in Jenkinsfile
 
