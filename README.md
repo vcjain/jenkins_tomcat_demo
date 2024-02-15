@@ -132,4 +132,5 @@ You can access Tomcat server on browser using URL http://your_server_ip:8080
 - Add "Deploy to Container" Plugin
 - Please add tomcat-manager as a credentials in jenkins. Use the username and password define for manager while configuring tomcat above.
 - PLease allow traffic from Jenkins Machine, by adding Jenkins IP address for all ports in the tomcat machine security group
+- Add String parameter TOMCAT_IP to the Job
   
