@@ -1,0 +1,49 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Hello') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage('User Input') {
+            steps {
+                // Define multiple parameters directly within the input step
+                slackSend(channel: 'Notification', message: "PLease approve the build. You can access the build at - ${env.BUILD_URL}")
+                script {
+                    def userInput = input(
+                        id: 'userInput', 
+                        message: 'Please provide input:',
+                        parameters: [
+                            booleanParam (description: 'All good to move ahead', name: 'APPROVE'),
+                            choice (choices: ['Very Bad', 'Good', 'Very Good'], description: 'How much rating you want to give to build', name: 'RATING')
+                        ]
+                    )
+
+                    // Access the parameters
+                    echo "User provided input for Testcase Execution: ${userInput.APPROVE}"
+                    echo "User provided input for Ratings: ${userInput.RATING}"
+                    env.APPROVE = userInput.APPROVE
+                    env.RATING = userInput.RATING
+                }
+            }
+        }
+        stage('Notification'){
+            steps{
+                script{
+                    if (env.APPROVE == 'false'){
+                        slackSend(channel: 'Notification', message: "Build Rejected:  ${currentBuild.number} ${env.BUILD_URL}")
+                        error('Approval not granted. Exiting pipeline.')
+                    }
+                }
+                slackSend(channel: 'Notification', message: "Manual Approval is provided for ${currentBuild.number} ${env.BUILD_URL}")
+            }
+        }
+        stage('Success'){
+            steps{
+                slackSend(channel: 'Notification', message: "The build #${currentBuild.number} is deployed successfully. Build Job URL -  ${env.BUILD_URL}")
+            }
+        }
+    }
+}
