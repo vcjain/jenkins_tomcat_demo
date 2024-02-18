@@ -133,4 +133,20 @@ You can access Tomcat server on browser using URL http://your_server_ip:8080
 - Please add tomcat-manager as a credentials in jenkins. Use the username and password define for manager while configuring tomcat above.
 - PLease allow traffic from Jenkins Machine, by adding Jenkins IP address for all ports in the tomcat machine security group
 - Add String parameter TOMCAT_IP to the Job
-  
+
+## Manual Approval
+The input directive in Jenkins Pipeline is used to pause the execution of a pipeline at a specific point and wait for human interaction or approval before proceeding further. It allows you to introduce manual intervention into your automated pipeline, enabling users to review the pipeline progress and make decisions.
+
+PLease refer the file Jenkins-Input-Slack for how to add a input statement in the pipeline and how to capture and use the values provided by User
+in other stages of the pipeline. 
+
+The submitter property of input directive controls, who can approve a build. We need to provide a valid jenkins user's UserID/Username as the 
+submitter. A Admin user will be able to approve a build
+
+To allow a user to approve a build using the input step in a Jenkins Pipeline, you need to grant the user the necessary permissions in the Jenkins permission matrix. Here are the required permissions:
+```
+Overall/Read: This permission allows the user to view the job and its status.
+Job/Build: This permission allows the user to initiate a build.
+Job/Cancel: This permission allows the user to cancel a build.
+Job/Configure: This permission allows the user to configure the job, including the pipeline script.
+```
