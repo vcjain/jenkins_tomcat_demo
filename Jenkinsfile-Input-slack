@@ -15,6 +15,12 @@ pipeline {
                     def userInput = input(
                         id: 'userInput', 
                         message: 'Please provide input:',
+                        ok: 'Yes, Proceed',
+                        submitter: 'vikash',
+                        // Specify the userid/username here, and this person must have 
+                        // job - Build, Cancel and Configure permission
+                        // NOTE: A Admin user is able to approve any builds 
+                        submitterParameter: 'APPROVED_BY',
                         parameters: [
                             booleanParam (description: 'All good to move ahead', name: 'APPROVE'),
                             choice (choices: ['Very Bad', 'Good', 'Very Good'], description: 'How much rating you want to give to build', name: 'RATING')
@@ -24,6 +30,9 @@ pipeline {
                     // Access the parameters
                     echo "User provided input for Testcase Execution: ${userInput.APPROVE}"
                     echo "User provided input for Ratings: ${userInput.RATING}"
+                    echo "User provided input for Ratings: ${userInput.APPROVED_BY}"
+                    
+                    //You can set enviroment varaible from user input value likeb below.
                     env.APPROVE = userInput.APPROVE
                     env.RATING = userInput.RATING
                 }
@@ -35,6 +44,9 @@ pipeline {
                     if (env.APPROVE == 'false'){
                         slackSend(channel: 'Notification', message: "Build Rejected:  ${currentBuild.number} ${env.BUILD_URL}")
                         error('Approval not granted. Exiting pipeline.')
+                        // Use error statement to mark build as failure.
+                        // When approver click on Abort, then build will be aborted but when he clicks on Proeed button
+                        // and he doesn't approve checkbox APPROVE, then build fail mark with above condition
                     }
                 }
                 slackSend(channel: 'Notification', message: "Manual Approval is provided for ${currentBuild.number} ${env.BUILD_URL}")
