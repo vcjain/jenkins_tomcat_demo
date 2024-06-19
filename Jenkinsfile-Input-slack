@@ -32,7 +32,7 @@ pipeline {
                     echo "User provided input for Ratings: ${userInput.RATING}"
                     echo "User provided input for Ratings: ${userInput.APPROVED_BY}"
                     
-                    //You can set enviroment varaible from user input value likeb below.
+                    //You can set environment variable from user input value likeb below.
                     env.APPROVE = userInput.APPROVE
                     env.RATING = userInput.RATING
                 }
