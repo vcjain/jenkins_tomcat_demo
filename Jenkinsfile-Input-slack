@@ -38,24 +38,23 @@ pipeline {
                 }
             }
         }
-        stage('Notification'){
-            steps{
-                script{
-                    if (env.APPROVE == 'false'){
-                        slackSend(channel: 'Notification', message: "Build Rejected:  ${currentBuild.number} ${env.BUILD_URL}")
-                        error('Approval not granted. Exiting pipeline.')
-                        // Use error statement to mark build as failure.
-                        // When approver click on Abort, then build will be aborted but when he clicks on Proeed button
-                        // and he doesn't approve checkbox APPROVE, then build fail mark with above condition
-                    }
-                }
-                slackSend(channel: 'Notification', message: "Manual Approval is provided for ${currentBuild.number} ${env.BUILD_URL}")
+    }
+    post {
+        always {
+            script {
+                slackSend(channel: 'Notification', message: "Build #${currentBuild.number} has finished. URL: ${env.BUILD_URL}")
             }
         }
-        stage('Success'){
-            steps{
-                slackSend(channel: 'Notification', message: "The build #${currentBuild.number} is deployed successfully. Build Job URL -  ${env.BUILD_URL}")
+        aborted {
+            script {
+                slackSend(channel: 'Notification', message: "Build #${currentBuild.number} was aborted. URL: ${env.BUILD_URL}")
+            }
+        }
+        failure {
+            script {
+                slackSend(channel: 'Notification', message: "Build #${currentBuild.number} has failed. URL: ${env.BUILD_URL}")
             }
         }
     }
+        
 }
