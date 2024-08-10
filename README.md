@@ -9,7 +9,7 @@ https://www.digitalocean.com/community/tutorials/how-to-install-apache-tomcat-10
 - sudo apt update
 - sudo apt-get install openjdk-17-jdk -y
 - cd /tmp
-- wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.24/bin/apache-tomcat-10.1.24.tar.gz
+- wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.28/bin/apache-tomcat-10.1.28.tar.gz
 - sudo tar xzvf apache-tomcat-10*tar.gz -C /opt/tomcat --strip-components=1
 - sudo chown -R ubuntu:ubuntu /opt/tomcat/
 - sudo chmod -R u+x /opt/tomcat/bin
