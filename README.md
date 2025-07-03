@@ -78,7 +78,11 @@ sudo nano /opt/tomcat/webapps/host-manager/META-INF/context.xml
 </Context>
 ```
 ------------------------------------------------------------------------------------------------------------------------
+NOTE: If you have a different Java version then you can check the Java path by running the below command path of Java is correct
 
+```
+sudo update-java-alternatives -l
+```
 Create the tomcat service file
 ```
 sudo nano /etc/systemd/system/tomcat.service
@@ -86,11 +90,7 @@ sudo nano /etc/systemd/system/tomcat.service
 
 Paste the below contents. Make sure the variable JAVA_HOME is set correctly. 
 
-NOTE: If you have a different Java version then you can check the Java path by running the below command path of Java is correct
 
-```
-sudo update-java-alternatives -l
-```
 ------------------------------------------------------------------------------------------------------------------------
 ```
 [Unit]
@@ -103,7 +103,7 @@ Type=forking
 User=ubuntu
 #Group=tomcat
 
-Environment="JAVA_HOME=/usr/lib/jvm/java-1.17.0-openjdk-amd64"
+Environment="JAVA_HOME=/usr/lib/jvm/java-1.21.0-openjdk-arm64"
 Environment="JAVA_OPTS=-Djava.security.egd=file:///dev/urandom"
 Environment="CATALINA_BASE=/opt/tomcat"
 Environment="CATALINA_HOME=/opt/tomcat"
@@ -121,6 +121,23 @@ WantedBy=multi-user.target
 ```
 ------------------------------------------------------------------------------------------------------------------------
 
+By default tomcat run on 8080 port. To update tomcat port we can change port in server.xml file
+```
+sudo nano /opt/tomcat/conf/server.xml
+
+```
+Look for follwoing block and change it to 8080 to 8000
+```
+<Connector port="8080" protocol="HTTP/1.1"
+           connectionTimeout="20000"
+           redirectPort="8443" />
+```
+Restart tomcat
+```
+sudo systemctl restart tomcat
+```
+
+------------------------------------------------------------------------------------------------------------------------
 Execute the below steps to start the Tomcat server
 ```
 - sudo systemctl daemon-reload
