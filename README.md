@@ -132,10 +132,7 @@ Look for follwoing block and change it to 8080 to 8000
            connectionTimeout="20000"
            redirectPort="8443" />
 ```
-Restart tomcat
-```
-sudo systemctl restart tomcat
-```
+
 
 ------------------------------------------------------------------------------------------------------------------------
 Execute the below steps to start the Tomcat server
