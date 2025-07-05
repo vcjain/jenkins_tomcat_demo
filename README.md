@@ -17,7 +17,7 @@ sudo apt-get install openjdk-17-jdk -y
 cd /tmp
 ```
 ```
-wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.41/bin/apache-tomcat-10.1.41.tar.gz
+wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.43/bin/apache-tomcat-10.1.43.tar.gz
 ```
 ```
 sudo tar xzvf apache-tomcat-10*tar.gz -C /opt/tomcat --strip-components=1
